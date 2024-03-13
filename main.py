@@ -44,3 +44,22 @@ rotated_image_45 = rotate_image(input_image_path, 45)
 rotated_image_90 = rotate_image(input_image_path, 90)
 cv2.imwrite('images/rotated_image_45.jpg', rotated_image_45)
 cv2.imwrite('images/rotated_image_90.jpg', rotated_image_90)
+
+#..................................................................................................................................................................................
+
+def block_average(image_path, block_size):
+    image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
+    height, width = image.shape[:2]
+    averaged_image = np.zeros_like(image)
+    for y in range(0, height, block_size):
+        for x in range(0, width, block_size):
+            block = image[y:y+block_size, x:x+block_size]
+            average_value = np.mean(block)
+            averaged_image[y:y+block_size, x:x+block_size] = average_value
+
+    return averaged_image
+# Example usage:
+input_image_path = 'images/image.jpg'
+block_size_3x3 = 3
+averaged_image_3x3_blocks = block_average(input_image_path, block_size_3x3)
+cv2.imwrite('images/averaged_image_3x3_blocks.jpg', averaged_image_3x3_blocks)
