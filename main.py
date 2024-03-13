@@ -9,6 +9,8 @@ def reduce_intensity_levels(image_path, num_levels):
     
     return quantized_image
 
+#..................................................................................................................................................................................
+
 input_image_path = "images/image.jpg" # Path to the input image
 num_levels = 2 # Number of intensity levels to reduce the image to
 
@@ -26,3 +28,19 @@ input_image_path = 'images/image.jpg'
 neighborhood_3x3 = 3
 averaged_image_3x3 = spatial_average(input_image_path, neighborhood_3x3)
 cv2.imwrite("images/averaged_image_3x3.jpg", averaged_image_3x3)
+
+#..................................................................................................................................................................................
+
+def rotate_image(image_path, angle_degrees):
+    image = cv2.imread(image_path)
+    height, width = image.shape[:2]
+    center = (width // 2, height // 2)
+    rotation_matrix = cv2.getRotationMatrix2D(center, angle_degrees, 1)
+    rotated_image = cv2.warpAffine(image, rotation_matrix, (width, height))
+    return rotated_image
+
+input_image_path = 'images/image.jpg'
+rotated_image_45 = rotate_image(input_image_path, 45)
+rotated_image_90 = rotate_image(input_image_path, 90)
+cv2.imwrite('images/rotated_image_45.jpg', rotated_image_45)
+cv2.imwrite('images/rotated_image_90.jpg', rotated_image_90)
