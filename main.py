@@ -14,4 +14,15 @@ num_levels = 2 # Number of intensity levels to reduce the image to
 
 reduced_image = reduce_intensity_levels(input_image_path, num_levels)
 
-cv2.imwrite("images/reduced_image/reduced_image.jpg", reduced_image) # Save the reduced image
+cv2.imwrite("images/reduced_image.jpg", reduced_image) # Save the reduced image
+
+def spatial_average(image_path, neighborhood_size):
+    image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
+    blurred_image = cv2.blur(image, (neighborhood_size, neighborhood_size))
+
+    return blurred_image
+
+input_image_path = 'images/image.jpg'
+neighborhood_3x3 = 3
+averaged_image_3x3 = spatial_average(input_image_path, neighborhood_3x3)
+cv2.imwrite("images/averaged_image_3x3.jpg", averaged_image_3x3)
