@@ -3,8 +3,9 @@ import numpy as np
 
 def reduce_intensity_levels(image_path, value):
     image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE) # Read the image in grayscale mode
-    new_intensity = 2 ** (8-value) # Calculate the new intensity level based on the number of desired levels
-    quantized_image = np.floor_divide(image, new_intensity) * new_intensity # Quantize the image by reducing intensity levels
+    new_intensity = 2 ** (8-value) 
+
+    quantized_image = np.floor_divide(image, new_intensity) * new_intensity 
     
     return quantized_image
 
@@ -65,7 +66,7 @@ print("The 45 rotated image has been saved as 3-1_rotated_image_45.jpg")
 
 cv2.imwrite('images/3-2_rotated_image_90.jpg', rotated_image_90)
 # Print a success message
-print("The 90 rotated image has been saved as 3-2_rotated_image_45.jpg")
+print("The 90 rotated image has been saved as 3-2_rotated_image_90.jpg")
 
 #..................................................................................................................................................................................
 
@@ -85,12 +86,18 @@ def block_average(image, block_size):
 image = cv2.imread('images/image.jpg', cv2.IMREAD_COLOR)
 block_size_3x3 = 3
 averaged_image_3x3_blocks = block_average(image, block_size_3x3)
-cv2.imwrite('images/averaged_image_3x3_blocks.jpg', averaged_image_3x3_blocks)
+cv2.imwrite('images/4-1_averaged_image_3x3_blocks.jpg', averaged_image_3x3_blocks)
+# Print a success message
+print("The image has been saved as 4-1_averaged_image_3x3_blocks.jpg")
 
 block_size_5x5 = 5
 averaged_image_5x5_blocks = block_average(image, block_size_5x5)
-cv2.imwrite('images/averaged_image_5x5_blocks.jpg', averaged_image_5x5_blocks)
+cv2.imwrite('images/4-2_averaged_image_5x5_blocks.jpg', averaged_image_5x5_blocks)
+# Print a success message
+print("The image has been saved as 4-2_averaged_image_5x5_blocks.jpg")
 
 block_size_7x7 = 7
 averaged_image_7x7_blocks = block_average(image, block_size_7x7)
-cv2.imwrite('images/averaged_image_7x7_blocks.jpg', averaged_image_7x7_blocks)
+cv2.imwrite('images/4-3_averaged_image_7x7_blocks.jpg', averaged_image_7x7_blocks)
+# Print a success message
+print("The image has been saved as 4-3_averaged_image_7x7_blocks.jpg")
